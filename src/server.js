@@ -2,7 +2,15 @@ const express = require('express')
 const path = require ('path')
 
 
+const db= require('./database')
+
+const routes= require('./routes')
+
 const app = express()
+
+//conexão com banco de dados
+db.connect()
+
 
 //Definindo template engine
 app.set('views', path.join(__dirname, 'views') )
@@ -16,9 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended:true}))
 
 //rotas
-app.get('/', (req,res)=>{
-    res.render("index")
-})
+app.use('/', routes)
 
 
 //404 error (not found)
