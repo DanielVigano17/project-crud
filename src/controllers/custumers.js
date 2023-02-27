@@ -18,7 +18,7 @@ async function add(req,res) {
         password: passwordCrypto,
     })
     register.save()
-    res.send('cadastro realizado')
+    res.redirect('/')
 }
 
 
