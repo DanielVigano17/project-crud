@@ -1,6 +1,14 @@
 const CustumersModel = require('../models/custumers')
 const {crypto} = require('../utils/password')
 
+function initial  (req,res){
+    res.render('index')    
+}
+
+function index(req,res) {
+    res.render('register')    
+}
+
 async function add(req,res) {
     const {
         name,
@@ -21,9 +29,20 @@ async function add(req,res) {
     res.redirect('/')
 }
 
+async function listUsers(req,res){
+   const users = await CustumersModel.find()
+
+    res.render('listUsers',{
+        title:'Listagem de Usuários',
+        users:users,
+    })
+}
 
 
 
 module.exports ={
-    add
+    add,
+    index,
+    initial,
+    listUsers
 }

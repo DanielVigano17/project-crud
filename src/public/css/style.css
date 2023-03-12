@@ -1,3 +1,33 @@
 body{
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 720px;
+
+}
+form{
+    max-width: 500px;
+    height: 350px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.075); 
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.164);  
+    padding: 20px 20px; 
+
+}
+
+form div{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+form div label{
+    text-align: center;
+    margin-bottom: 6px;
+}
+form button{
+    max-width: 120px;
+    margin: 7px auto;
+   
 }
