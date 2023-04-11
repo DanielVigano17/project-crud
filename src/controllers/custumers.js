@@ -38,11 +38,48 @@ async function listUsers(req,res){
     })
 }
 
+async function formEdit(req,res){
+    const {id} = req.query
+
+    const user = await CustumersModel.findById(id)
+
+    res.render('edit', {title:'Editar Usuário',
+user
+})
+}
+
+async function edit (req,res){
+    const {
+        name,
+        age,
+        email,
+        password,
+    } = req.body
+
+    const {id} = req.params
+
+    const user= await CustumersModel.findById(id)
+
+    user.name = name
+    user.age = age
+    user.email =email
+
+    user.save()
+
+    res.render('edit',{
+        title:'Editar Usuário',
+        user,
+        message:'Alterado com sucesso'
+    })
+}
+
 
 
 module.exports ={
     add,
     index,
     initial,
-    listUsers
+    listUsers,
+    formEdit,
+    edit
 }
