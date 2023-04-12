@@ -9,6 +9,8 @@ function index(req,res) {
     res.render('register')    
 }
 
+
+//Adicionar
 async function add(req,res) {
     const {
         name,
@@ -29,6 +31,7 @@ async function add(req,res) {
     res.redirect('/')
 }
 
+//listar
 async function listUsers(req,res){
    const users = await CustumersModel.find()
 
@@ -38,6 +41,7 @@ async function listUsers(req,res){
     })
 }
 
+//Editar
 async function formEdit(req,res){
     const {id} = req.query
 
@@ -47,7 +51,6 @@ async function formEdit(req,res){
 user
 })
 }
-
 async function edit (req,res){
     const {
         name,
@@ -73,6 +76,19 @@ async function edit (req,res){
     })
 }
 
+//Remover
+async function remove(req,res){
+    const {id} = req.params
+
+    const remove = await CustumersModel.deleteOne({_id: id})
+
+    if(remove.ok!=0){
+        res.redirect('/list')
+    }else{
+        console.log('deu merda')
+    }
+}
+
 
 
 module.exports ={
@@ -81,5 +97,6 @@ module.exports ={
     initial,
     listUsers,
     formEdit,
-    edit
+    edit,
+    remove
 }
